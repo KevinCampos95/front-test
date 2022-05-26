@@ -16,9 +16,9 @@ import GoogleIcon from '@mui/icons-material/Google';
 
 function Login() {
 
-    const [email, setEmail] = useState('');
+    const [email, setEmail] = useState('eve.holt@reqres.in');
     const [emailError, setEmailError] = useState(false);
-    const [password, setPassword] = useState('');
+    const [password, setPassword] = useState('pistol');
     const [passwordError, setPasswordError] = useState(false);
 
     const validateEmail = value => {
@@ -47,12 +47,11 @@ function Login() {
                 <CardLeftContainer />
                 <CardRightContainer>
                     <CardRightContainerTitle>
-                        Sign up to Zoho.
+                        Registrate en Zoho.
                     </CardRightContainerTitle>
                     <Divider size={96} />
                     <InputTitle>E-mail</InputTitle>
                     <TextField
-                        hiddenLabel
                         variant="outlined"
                         type="email"
                         placeholder="name@mail.com"
@@ -72,7 +71,6 @@ function Login() {
                     <Divider size={32} />
                     <InputTitle>Password</InputTitle>
                     <TextField
-                        hiddenLabel
                         variant="outlined"
                         type="password"
                         placeholder="+8 characters, 1 Capital letter and 1 special character"

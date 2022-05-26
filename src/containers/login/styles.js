@@ -31,15 +31,18 @@ export const CardLeftContainer = styled.div`
 
 export const CardRightContainer = styled.div`
   width: 50%;
-  padding: 80px;
+  padding: 40px 80px;
   border-radius: 16px;
   text-align: left;
+  height: 100%;
+  overflow-y: auto;
   
   & .button {
     padding: 16px 0px;
     text-transform: none;
     font-size: 16px;
     font-weight: 600;
+    border-radius: 10px;
   }
   
   & .google-icon {
