@@ -13,6 +13,8 @@ import { EMAIL_REGEX, PASSWORD_REGEX } from '../../utils/regexes';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import GoogleIcon from '@mui/icons-material/Google';
+import axios from 'axios';
+import { enviroment } from '../../config/EnviromentConfig';
 
 function Login() {
 
@@ -39,6 +41,19 @@ function Login() {
             setPasswordError(false);
             setPassword(value)
         }
+    };
+
+    const handleRegisterUser = () => {
+        const user = {
+            email: email,
+            password: password
+        }
+        axios.post(enviroment.API_ENDPOINT_URL + `api/register`, user)
+            .then(res => {
+                console.log(res, 'resultado')
+            }).catch(error => {
+            console.log("error", error);
+        });
     };
 
     return (
@@ -88,9 +103,21 @@ function Login() {
                         }}
                     />
                     <Divider size={32} />
-                    <Button variant="contained" fullWidth className="button">Crear cuenta</Button>
+                    <Button
+                        variant="contained"
+                        fullWidth
+                        className="button"
+                        disabled={emailError && passwordError}
+                        onClick={()  => handleRegisterUser()}
+                    >
+                        Crear cuenta
+                    </Button>
                     <Divider size={16} />
-                    <Button variant="outlined" fullWidth className="button">
+                    <Button
+                        variant="outlined"
+                        fullWidth
+                        className="button"
+                    >
                         <GoogleIcon className="google-icon"/>
                         Registrarse con Google
                     </Button>
