@@ -1,3 +1,3 @@
-import {env} from './EnvironmentConfig';
+import { enviroment } from './EnviromentConfig';
 
-export const API_BASE_URL = env.API_ENDPOINT_URL;
+export const API_BASE_URL = enviroment.API_ENDPOINT_URL;

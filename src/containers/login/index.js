@@ -13,8 +13,9 @@ import { EMAIL_REGEX, PASSWORD_REGEX } from '../../utils/regexes';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import GoogleIcon from '@mui/icons-material/Google';
-import axios from 'axios';
+import axios from '../../config/https';
 import { enviroment } from '../../config/EnviromentConfig';
+import { get } from 'lodash';
 
 function Login() {
 
@@ -49,8 +50,11 @@ function Login() {
             password: password
         }
         axios.post(enviroment.API_ENDPOINT_URL + `api/register`, user)
-            .then(res => {
-                console.log(res, 'resultado')
+            .then(response => {
+                const data = get(response, 'data', null);
+                if (data) {
+                    localStorage.setItem("user", data);
+                }
             }).catch(error => {
             console.log("error", error);
         });
