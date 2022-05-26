@@ -7,8 +7,9 @@ const service = axios.create({
     timeout: 60000
 });
 
-axios.interceptors.request.use(function (config) {
-    const token = get(JSON.parse(localStorage.getItem('user')), 'token', '');
+service.interceptors.request.use(function (config) {
+    const tokenString = localStorage.getItem("user") || '{}';
+    const token = get(JSON.parse(tokenString), 'token', '');
     config.headers.Authorization =  token;
 
     return config;

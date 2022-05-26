@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import {
     MainContainer,
     Card,
@@ -16,13 +16,16 @@ import GoogleIcon from '@mui/icons-material/Google';
 import axios from '../../config/https';
 import { enviroment } from '../../config/EnviromentConfig';
 import { get } from 'lodash';
+import { useNavigate  } from 'react-router-dom';
 
-function Login() {
+function Register() {
 
     const [email, setEmail] = useState('eve.holt@reqres.in');
     const [emailError, setEmailError] = useState(false);
     const [password, setPassword] = useState('pistol');
     const [passwordError, setPasswordError] = useState(false);
+
+    const navigate = useNavigate();
 
     const validateEmail = value => {
         setEmail(value);
@@ -53,7 +56,8 @@ function Login() {
             .then(response => {
                 const data = get(response, 'data', null);
                 if (data) {
-                    localStorage.setItem("user", data);
+                    localStorage.setItem("user", JSON.stringify(data));
+                    navigate('/users');
                 }
             }).catch(error => {
             console.log("error", error);
@@ -68,7 +72,7 @@ function Login() {
                     <CardRightContainerTitle>
                         Registrate en Zoho.
                     </CardRightContainerTitle>
-                    <Divider size={96} />
+                    <Divider size={64} />
                     <InputTitle>E-mail</InputTitle>
                     <TextField
                         variant="outlined"
@@ -120,7 +124,7 @@ function Login() {
                     <Button
                         variant="outlined"
                         fullWidth
-                        className="button"
+                        className="button google-button"
                     >
                         <GoogleIcon className="google-icon"/>
                         Registrarse con Google
@@ -131,4 +135,4 @@ function Login() {
     );
 }
 
-export default memo(Login);
+export default memo(Register);
