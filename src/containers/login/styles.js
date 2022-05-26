@@ -54,6 +54,10 @@ export const CardRightContainer = styled.div`
   & .google-icon {
     margin-right: 16px;
   }
+  
+  & .google-button {
+    margin-bottom: 24px;
+  } 
 `;
 
 export const CardRightContainerTitle = styled.div`

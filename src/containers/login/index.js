@@ -120,7 +120,7 @@ function Login() {
                     <Button
                         variant="outlined"
                         fullWidth
-                        className="button"
+                        className="button google-button"
                     >
                         <GoogleIcon className="google-icon"/>
                         Registrarse con Google
