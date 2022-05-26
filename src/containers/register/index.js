@@ -17,7 +17,7 @@ import axios from '../../config/https';
 import { enviroment } from '../../config/EnviromentConfig';
 import { get } from 'lodash';
 
-function Login() {
+function Register() {
 
     const [email, setEmail] = useState('eve.holt@reqres.in');
     const [emailError, setEmailError] = useState(false);
@@ -131,4 +131,4 @@ function Login() {
     );
 }
 
-export default memo(Login);
+export default memo(Register);
