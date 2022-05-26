@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useEffect } from 'react';
 import {
     MainContainer,
     Card,
@@ -16,6 +16,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import axios from '../../config/https';
 import { enviroment } from '../../config/EnviromentConfig';
 import { get } from 'lodash';
+import { useNavigate  } from 'react-router-dom';
 
 function Register() {
 
@@ -23,6 +24,8 @@ function Register() {
     const [emailError, setEmailError] = useState(false);
     const [password, setPassword] = useState('pistol');
     const [passwordError, setPasswordError] = useState(false);
+
+    const navigate = useNavigate();
 
     const validateEmail = value => {
         setEmail(value);
@@ -54,6 +57,7 @@ function Register() {
                 const data = get(response, 'data', null);
                 if (data) {
                     localStorage.setItem("user", JSON.stringify(data));
+                    navigate('/users');
                 }
             }).catch(error => {
             console.log("error", error);
