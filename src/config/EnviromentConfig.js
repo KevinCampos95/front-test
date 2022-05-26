@@ -5,10 +5,9 @@ const dev = {
 const getEnviroment = () => {
     switch (process.env.REACT_APP_NODE_ENV) {
         case 'development':
-            return dev
+            return dev;
         default:
-            return dev
-            break;
+            return dev;
     }
 }
 

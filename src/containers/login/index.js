@@ -53,7 +53,7 @@ function Login() {
             .then(response => {
                 const data = get(response, 'data', null);
                 if (data) {
-                    localStorage.setItem("user", data);
+                    localStorage.setItem("user", JSON.stringify(data));
                 }
             }).catch(error => {
             console.log("error", error);
@@ -68,7 +68,7 @@ function Login() {
                     <CardRightContainerTitle>
                         Registrate en Zoho.
                     </CardRightContainerTitle>
-                    <Divider size={96} />
+                    <Divider size={64} />
                     <InputTitle>E-mail</InputTitle>
                     <TextField
                         variant="outlined"
