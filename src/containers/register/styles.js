@@ -8,6 +8,7 @@ export const MainContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  user-select: none;
 
   ${mediaQuery} {
     display: inline-block;
@@ -27,6 +28,11 @@ export const Card = styled.div`
     width: 100%;
     height: 100%;
   }
+`;
+
+export const CardContainer = styled.div`
+  width: 100%;
+  display: flex;
 `;
 
 export const CardLeftContainer = styled.div`
@@ -72,5 +78,10 @@ export const InputTitle = styled.div`
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 12px;
+`;
+
+export const SkeletonContainer = styled.div`
+  width: 100%;
+  padding: 24px;
 `;
 

@@ -11,14 +11,27 @@ function Router() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route exact path='/' element={<PublicRoute layout={EmptyLayout} component={Register} />} />
-                <Route exact path='/ups' element={<PublicRoute layout={EmptyLayout} component={Errors} />} />
-                <Route exact path='/users' element={<PrivateRoute layout={EmptyLayout} component={Users} />} />
+                <Route
+                    exact
+                    path='/'
+                    element={
+                    <PublicRoute layout={EmptyLayout} component={Register} />}
+                />
+                <Route
+                    exact
+                    path='/ups'
+                    element={
+                    <PublicRoute layout={EmptyLayout} component={Errors} />}
+                />
+                <Route
+                    exact
+                    path='/users'
+                    element={
+                    <PrivateRoute layout={EmptyLayout} component={Users} />}
+                />
             </Routes>
         </BrowserRouter>
     );
 }
-
-Router.propTypes = {};
 
 export default Router;
