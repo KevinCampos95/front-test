@@ -59,8 +59,8 @@ function Register() {
                     localStorage.setItem("user", JSON.stringify(data));
                     navigate('/users');
                 }
-            }).catch(error => {
-            console.log("error", error);
+            }).catch(() => {
+            navigate('/ups')
         });
     };
 

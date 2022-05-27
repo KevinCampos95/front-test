@@ -19,7 +19,7 @@ function Users() {
     const [users, setUsers] = useState([]);
     const [page, setPage] = useState(1);
 
-    const navigate =useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchUsers();
@@ -33,8 +33,8 @@ function Users() {
 
                 setUsers(allUsers);
                 setPage(page + 1);
-            }).catch(error => {
-            console.log("error", error);
+            }).catch(() => {
+            navigate('/ups')
         });
     };
 
