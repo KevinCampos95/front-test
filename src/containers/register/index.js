@@ -2,10 +2,12 @@ import React, { memo, useState, useEffect } from 'react';
 import {
     MainContainer,
     Card,
+    CardContainer,
     CardLeftContainer,
     CardRightContainer,
     CardRightContainerTitle,
-    InputTitle
+    InputTitle,
+    SkeletonContainer
 } from './styles';
 import {Button, InputAdornment, TextField} from '@mui/material';
 import { Divider } from '../../utils/styled-components';
@@ -17,6 +19,7 @@ import axios from '../../config/https';
 import { enviroment } from '../../config/EnviromentConfig';
 import { get } from 'lodash';
 import { useNavigate  } from 'react-router-dom';
+import ListSkeleton from '../../components/ListSkeleton';
 
 function Register() {
 
@@ -24,6 +27,7 @@ function Register() {
     const [emailError, setEmailError] = useState(false);
     const [password, setPassword] = useState('pistol');
     const [passwordError, setPasswordError] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -48,6 +52,7 @@ function Register() {
     };
 
     const handleRegisterUser = () => {
+        setIsLoading(true);
         const user = {
             email: email,
             password: password
@@ -59,77 +64,87 @@ function Register() {
                     localStorage.setItem("user", JSON.stringify(data));
                     navigate('/users');
                 }
-            }).catch(error => {
-            console.log("error", error);
+            }).catch(() => {
+                navigate('/ups')
+            }).finally(() => {
+                setIsLoading(false);
         });
     };
 
     return (
         <MainContainer>
             <Card>
-                <CardLeftContainer />
-                <CardRightContainer>
-                    <CardRightContainerTitle>
-                        Registrate en Zoho.
-                    </CardRightContainerTitle>
-                    <Divider size={64} />
-                    <InputTitle>E-mail</InputTitle>
-                    <TextField
-                        variant="outlined"
-                        type="email"
-                        placeholder="name@mail.com"
-                        fullWidth
-                        value={email}
-                        onChange={event => validateEmail(event.target.value)}
-                        error={emailError}
-                        helperText={emailError ? 'Correo inválido' : ''}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="start">
-                                    <AlternateEmailIcon />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                    <Divider size={32} />
-                    <InputTitle>Password</InputTitle>
-                    <TextField
-                        variant="outlined"
-                        type="password"
-                        placeholder="+8 characters, 1 Capital letter and 1 special character"
-                        fullWidth
-                        value={password}
-                        onChange={event => validatePassword(event.target.value)}
-                        error={passwordError}
-                        helperText={passwordError ? 'Contraseña no segura' : ''}
-                        InputProps={{
-                            endAdornment: (
-                                <InputAdornment position="start">
-                                    <LockOpenIcon />
-                                </InputAdornment>
-                            ),
-                        }}
-                    />
-                    <Divider size={32} />
-                    <Button
-                        variant="contained"
-                        fullWidth
-                        className="button"
-                        disabled={emailError && passwordError}
-                        onClick={()  => handleRegisterUser()}
-                    >
-                        Crear cuenta
-                    </Button>
-                    <Divider size={16} />
-                    <Button
-                        variant="outlined"
-                        fullWidth
-                        className="button google-button"
-                    >
-                        <GoogleIcon className="google-icon"/>
-                        Registrarse con Google
-                    </Button>
-                </CardRightContainer>
+                {isLoading ? (
+                    <SkeletonContainer>
+                        <ListSkeleton />
+                    </SkeletonContainer>
+                ) : (
+                    <CardContainer>
+                        <CardLeftContainer />
+                        <CardRightContainer>
+                            <CardRightContainerTitle>
+                                Registrate en Zoho.
+                            </CardRightContainerTitle>
+                            <Divider size={64} />
+                            <InputTitle>E-mail</InputTitle>
+                            <TextField
+                                variant="outlined"
+                                type="email"
+                                placeholder="name@mail.com"
+                                fullWidth
+                                value={email}
+                                onChange={event => validateEmail(event.target.value)}
+                                error={emailError}
+                                helperText={emailError ? 'Correo inválido' : ''}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="start">
+                                            <AlternateEmailIcon />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                            <Divider size={32} />
+                            <InputTitle>Password</InputTitle>
+                            <TextField
+                                variant="outlined"
+                                type="password"
+                                placeholder="+8 characters, 1 Capital letter and 1 special character"
+                                fullWidth
+                                value={password}
+                                onChange={event => validatePassword(event.target.value)}
+                                error={passwordError}
+                                helperText={passwordError ? 'Contraseña no segura' : ''}
+                                InputProps={{
+                                    endAdornment: (
+                                        <InputAdornment position="start">
+                                            <LockOpenIcon />
+                                        </InputAdornment>
+                                    ),
+                                }}
+                            />
+                            <Divider size={32} />
+                            <Button
+                                variant="contained"
+                                fullWidth
+                                className="button"
+                                disabled={emailError && passwordError}
+                                onClick={()  => handleRegisterUser()}
+                            >
+                                Crear cuenta
+                            </Button>
+                            <Divider size={16} />
+                            <Button
+                                variant="outlined"
+                                fullWidth
+                                className="button google-button"
+                            >
+                                <GoogleIcon className="google-icon"/>
+                                Registrarse con Google
+                            </Button>
+                        </CardRightContainer>
+                    </CardContainer>
+                )}
             </Card>
         </MainContainer>
     );

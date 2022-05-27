@@ -23,6 +23,11 @@ export const Card = styled.div`
   }
 `;
 
+export const CardContainer = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
 export const UserCardsContainer = styled.div`
   height: 90%;
   overflow-y: auto;
@@ -76,4 +81,9 @@ export const UserEmail = styled.div`
   width: 100%;
   font-size: 14px;
   letter-spacing: -0.2px;
+`;
+
+export const SkeletonContainer = styled.div`
+  width: 100%;
+  padding: 24px;
 `;
