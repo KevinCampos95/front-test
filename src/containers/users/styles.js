@@ -12,6 +12,7 @@ export const MainContainer = styled.div`
 
 export const Card = styled.div`
   width: 50%;
+  max-width: 50%;
   height: 80%;
   background-color: #ffffff;
   padding: 16px;
@@ -84,6 +85,5 @@ export const UserEmail = styled.div`
 `;
 
 export const SkeletonContainer = styled.div`
-  width: 100%;
   padding: 24px;
 `;
